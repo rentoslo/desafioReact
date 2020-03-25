@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Form, Field, reduxForm } from 'redux-form'
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-import Header from "../../components/header"
+// actions users
+import { actionsUsers } from '../../store/ducks/users'
 
 const Home = () => {
-  return <div>
-    <Header />
-     </div>;
+  const users = useSelector(state => state.user.users);
+  const lista = users.map( (user) => {
+  return <div>{user.name} - {user.email}</div>
+  })
+  return lista
 };
 
 //Tipar as props usadas

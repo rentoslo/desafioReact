@@ -6,3 +6,5 @@ instalar redux form: OK
 instalar react table: OK
 instalar react store: OK
 instalar react-router-dom: OK
+instalar redu-persist: OK
+

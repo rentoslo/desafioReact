@@ -5,15 +5,14 @@ import {
   Route
 } from "react-router-dom";
 
-import Home from './views/Home'
-import Steps from './views/Steps'
+import Header from './components/header'
 
 export default function App() {
   return (
     <Router>
       <Switch>
         <Route path="/" exact>
-          <Home />
+          <Header />
         </Route>
       </Switch>
     </Router>
