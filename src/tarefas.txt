@@ -1,0 +1,8 @@
+repositório git: https://github.com/rentoslo/desafioReact.git
+instalar redux: OK
+instalar redux logger: OK
+instalar redux saga: OK
+instalar redux form: OK
+instalar react table: OK
+instalar react store: OK
+instalar react-router-dom: OK
