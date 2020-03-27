@@ -19,6 +19,16 @@ const initialState = {
       number: 12,
       neighborhood: "Bairro B",
       state: "Minas Gerais"
+    },
+    {
+      id: 789,
+      name: "Renato3",
+      email: "renato2@email1",
+      password: "777777",
+      street: "Rua DGhi",
+      number: 55,
+      neighborhood: "Bairro FF",
+      state: "Minas"
     }
 
   ],
@@ -54,11 +64,53 @@ export const typesUsers = {
   updateAddressSuccess: 'updateAddressSuccess',
   updateAddressError: 'updateAddressError',
 };
-
-export const actionsUsers = {}
+//name, email, password, street, number, neighborhood, state
+export const actionsUsers = {
+  addUser: (name, email, password, street, number, neighborhood, state) => {
+    return {
+      type: typesUsers.addUser,
+      payload: {
+        id: Math.random(),
+        name: name,
+        email,
+        password,
+        street,
+        number,
+        neighborhood,
+        state
+      }
+    }
+  },
+}
 
 export const reducersUsers = (state = initialState, action) => {
-  switch (action.type) { 
+  switch (action.type) {
+
+    // add users
+    case typesUsers.addUserSuccess:
+      return {
+        users: [...state.users, {
+          id: action.payload.id,
+          name: action.payload.name,
+          email: action.payload.email,
+          password: action.payload.password,
+          street: action.payload.street,
+          number: action.payload.number,
+          neighborhood: action.payload.neighborhood,
+          state: action.payload.state
+        }],
+        returnMessage: {
+          message: "Usuário adicionado com sucesso!"
+        }
+      };
+    case typesUsers.addUserError: {
+      return {
+        ...state,
+        returnMessage: {
+          message: action.payload.message
+        }
+      }
+    }
 
     default:
       return state

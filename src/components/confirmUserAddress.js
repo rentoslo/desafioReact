@@ -1,11 +1,13 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 //para react-table
-import Table from '../../components/table'
-import StyleTable from '../../components/tableStyles'
+import Table from '../components/table'
+import StyleTable from '../components/tableStyles'
 
-const Home = () => {
-  const users = useSelector(state => state.user.users)
+
+
+const ConfirmUserAddress = () => {
+  const newUser = [useSelector(state => state.form.steps.values)];
   const columns = React.useMemo(
     () => [
       {
@@ -40,10 +42,6 @@ const Home = () => {
             Header: 'State',
             accessor: 'state',
           },
-          {
-            Header: 'Delete User',
-            accessor: 'delete',
-          },
         ],
       },
     ],
@@ -53,10 +51,10 @@ const Home = () => {
   return (
     <div>
       <StyleTable>
-        <Table columns={columns} data={users} />
+        <Table columns={columns} data={newUser} />
       </StyleTable>
     </div>
   )
 }
 
-export default Home;
+export default ConfirmUserAddress;

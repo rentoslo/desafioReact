@@ -7,4 +7,4 @@ instalar react table: OK
 instalar react store: OK
 instalar react-router-dom: OK
 instalar redu-persist: OK
-
+instalar styled-components: 

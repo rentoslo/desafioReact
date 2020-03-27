@@ -10,6 +10,10 @@ function* addUser(action) {
       name: payload.name,
       email: payload.email,
       password: payload.password,
+      street: payload.street,
+      number: payload.number,
+      neighborhood: payload.neighborhood,
+      state: payload.state,
     }})
   } catch (error) {
     yield put({ type: typesUsers.addUserError, payload: {
