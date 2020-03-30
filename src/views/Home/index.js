@@ -40,10 +40,6 @@ const Home = () => {
             Header: 'State',
             accessor: 'state',
           },
-          {
-            Header: 'Delete User',
-            accessor: 'delete',
-          },
         ],
       },
     ],

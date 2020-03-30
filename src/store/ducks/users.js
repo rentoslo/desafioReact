@@ -44,9 +44,9 @@ export const typesUsers = {
   addUserSuccess: 'addUserSuccess',
   addUserError: 'addUserError',
 
-  removeUser: 'removeUser',
-  removeUserSuccess: 'removeUserSuccess',
-  removeUserError: 'removeUserError',
+  deleteUser: 'deleteUser',
+  deleteUserSuccess: 'deleteUserSuccess',
+  deleteUserError: 'deleteUserError',
 
   updateUser: 'updateUser',
   updateUserSuccess: 'updateUserSuccess',
@@ -81,6 +81,25 @@ export const actionsUsers = {
       }
     }
   },
+
+  deleteUser: (id) => {
+    return {
+      type: typesUsers.deleteUser,
+      payload: { id }
+    }
+  },
+
+  updateUser: (id, name, email) => {
+    return {
+      type: typesUsers.updateUser,
+      payload: {
+        id,
+        name,
+        email,
+      }
+    }
+  }
+
 }
 
 export const reducersUsers = (state = initialState, action) => {
@@ -111,6 +130,52 @@ export const reducersUsers = (state = initialState, action) => {
         }
       }
     }
+
+    // delete user
+    case typesUsers.deleteUserSuccess:
+      console.log("action.payload.id")
+      console.log(action.payload.id)
+      return {
+        users: state.users.filter((user) => (user.id !== action.payload.id)),
+        returnMessage: {
+          message: "Usuário excluído com sucesso!"
+        }
+      };
+    case typesUsers.deleteUserError:
+      return {
+        ...state,
+        returnMessage: {
+          message: action.payload.message
+        }
+      }
+
+
+    // update user
+    case typesUsers.updateUserSuccess:
+      console.log("UPDATE")
+      return {
+        users: state.users.map((user) => {
+          if (user.id === action.payload.id) {
+            return {
+              ...user,
+              name: action.payload.name ? action.payload.name : user.name,
+              email: action.payload.email ? action.payload.email : user.email,
+            }
+          }
+          return user;
+        }),
+        returnMessage: {
+          message: "Usário alterado com sucesso!"
+        }
+      }
+    case typesUsers.updateUserError:
+      return {
+        ...state,
+        returnMessage: {
+          message: action.payload.message
+        }
+      }
+
 
     default:
       return state

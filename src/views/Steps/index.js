@@ -3,13 +3,32 @@ import { reduxForm, Form } from 'redux-form'
 import { useDispatch, useSelector } from 'react-redux';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
+
 import AddUser from '../../components/addUser'
 import AddAddress from '../../components/addAddress'
 import ConfirmUserAddress from '../../components/confirmUserAddress'
 // actions users
 import { actionsUsers } from '../../store/ducks/users'
 
+// validação dos dados digitados
+const validate = values => {
+  const errors = {}
+  if (!values.name) {
+    errors.name = 'Required'
+  }
+  if (!values.email) {
+    errors.email = 'Required'
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid email address'
+  }
+  // console.log(errors)
+  return errors
+}
+
 const Steps = (props) => {
+
+  console.log("validate")
+  console.log(validate)
 
   const { handleSubmit } = props
   const dispatch = useDispatch();
@@ -54,8 +73,9 @@ const Steps = (props) => {
       </TabPanel>
     </Tabs>
   </Form>
-  <h4> {returnMessage} </h4>
+   {returnMessage}
   </div>
+  
 };
 
 //Tipar as props usadas
@@ -63,5 +83,6 @@ Steps.propTypes = {
 };
 
 export default reduxForm({
-  form: 'steps'
+  form: 'steps',
+  validate
 })(Steps);
